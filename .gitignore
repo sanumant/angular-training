@@ -33,6 +33,7 @@ stylelint-junit.xml
 # Angular CLI generated rules
 # compiled output
 /dist
+/node_modules
 /tmp
 /out-tsc
 # Only exists if Bazel was run
