@@ -1,0 +1,80 @@
+
+TODO.md
+node_modules/
+dist/
+/target
+/karmaInjected.conf.js
+/src/resources/lib
+reports/
+.vscode
+watchTarget
+*.sublime-*
+*.zip
+*.7z
+
+*.iml
+.idea/
+/wip
+/coverage
+src/resources/lib/
+src/app/constants/uniteCoreConfig.constant.js
+/reports
+jsconfig.json
+eslint.json
+tslint.xml
+tslint-junit.xml
+stylelint-junit.xml
+
+# VS Code
+.settings
+.project
+.classpath
+
+# Angular CLI generated rules
+# compiled output
+/dist
+/tmp
+/out-tsc
+# Only exists if Bazel was run
+/bazel-out
+
+# profiling files
+chrome-profiler-events*.json
+speed-measure-plugin*.json
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+debug.log
+/config.json
+config.json
+.env
+env_file
+# System Files
+.DS_Store
+Thumbs.db
+/build.properties
+/local.env
