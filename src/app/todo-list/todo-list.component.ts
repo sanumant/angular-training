@@ -15,7 +15,7 @@ export class TodoListComponent implements OnInit {
   }
 
   addItem(item : string) {
-    this.items.push(item);
+    if(item) {this.items.push(item)};
   }
 
   removeItem(item : string) {
