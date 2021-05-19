@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-training';
+
+  showChild(text: string) {
+    alert(text);
+  }
 }
