@@ -1,22 +1,29 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
+import {UIRouterModule} from '@uirouter/angular';
 import { AppComponent } from './app.component';
 import {DpDatePickerModule} from 'ng2-date-picker';
-import { AlertComponent } from './alert/alert.component';
-import { TodoListComponent } from './todo-list/todo-list.component';
+import { AlertModule } from './features/alert/alert.module';
+import { TodoListModule } from './features/todo-list/todo-list.module';
+import { AboutModule } from './features/about/about.module';
+
+const STATES = [
+    {name: 'todo.**', url: '/todo-list',  loadChildren: () => import('./features/todo-list/todo-list.module').then(mod => mod.TodoListModule)},
+    {name: 'about.**', url: '/about-page',  loadChildren: () => import('./features/about/about.module').then(mod => mod.AboutModule)},
+    {name: 'alert.**', url: '/alert-page',  loadChildren: () => import('./features/alert/alert.module').then(mod => mod.AlertModule)},
+];
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AlertComponent,
-    TodoListComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    DpDatePickerModule
+    DpDatePickerModule,
+    AboutModule,
+    AlertModule,
+    TodoListModule,
+    UIRouterModule.forRoot({states: STATES}),
   ],
   providers: [],
   bootstrap: [AppComponent]
