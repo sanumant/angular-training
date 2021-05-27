@@ -4,6 +4,7 @@ import { Store } from '@ngxs/store';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { TodoListService } from 'src/app/api/services/todo-list.service';
 import { TodoListItem } from 'src/app/api/services/TodoListItem';
+import { RemoveTodo } from '../../state/todo.actions';
 
 @Component({
   selector: 'app-todo-list',
@@ -25,7 +26,8 @@ export class TodoListComponent implements OnInit {
   }
 
   removeItem(id: number) {
-    this.todoListService.removeItem(id);
+    this.store.dispatch(new RemoveTodo(id));
+    //this.todoListService.removeItem(id);
   }
 
   get runChangeDetection() {

@@ -7,6 +7,7 @@ import { AddEditTodoComponent } from './component/AddEditTodo/AddEditTodo.compon
 import { TodoListService } from 'src/app/api/services/todo-list.service';
 import { NgxsModule } from '@ngxs/store';
 import { TodoListItemsState } from './state/todo.state';
+import { filter, map } from 'rxjs/operators';
 
 export const STATES = [
     {name: 'list', url: '/list',  component: UIView, redirectTo: 'list.dashboard'},
