@@ -3,7 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import {UIRouterModule} from '@uirouter/angular';
 import { AppComponent } from './app.component';
 import {DpDatePickerModule} from 'ng2-date-picker';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ExampleComponent } from './example/example.component';
+import { NgxsModule } from '@ngxs/store';
 
 const STATES = [
     {name: 'list.**', url: '/list',  loadChildren: () => import('./features/todo/todo.module').then(mod => mod.TodoModule)},
@@ -11,14 +12,14 @@ const STATES = [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ExampleComponent
   ],
   imports: [
     BrowserModule,
     DpDatePickerModule,
     UIRouterModule.forRoot({states: STATES}),
-    ReactiveFormsModule,
-    FormsModule
+    NgxsModule.forRoot([])
   ],
   //add services here
   providers: [],
