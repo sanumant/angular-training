@@ -26,7 +26,7 @@ export class TodoListItemsState {
     
         return this.todoListService.addItem(todoItem)
         .pipe(
-            map(addedItem => 
+            tap(addedItem => 
                 ctx.setState(
                     patch({
                         todoItems: append([addedItem])
@@ -40,7 +40,7 @@ export class TodoListItemsState {
         
         return this.todoListService.updateItem(todoItem)
         .pipe(
-            map(updatedItem => {
+            tap(updatedItem => {
                 ctx.setState(
                     patch({
                         todoItems: updateItem<TodoListItem>(i => i?.id === updatedItem.id, updatedItem)

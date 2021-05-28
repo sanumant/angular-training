@@ -30,7 +30,7 @@ export class TodoListService {
   }
 
   getItem(id: number): Observable<any> {
-    return items.pipe(
+    return items.pipe(tap(item => console.log(item)),
       map(items => items.find(i => i.id === id))
     );
   }

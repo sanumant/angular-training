@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import {DpDatePickerModule} from 'ng2-date-picker';
 import { ExampleComponent } from './example/example.component';
 import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 
 const STATES = [
     {name: 'list.**', url: '/list',  loadChildren: () => import('./features/todo/todo.module').then(mod => mod.TodoModule)},
@@ -19,7 +20,8 @@ const STATES = [
     BrowserModule,
     DpDatePickerModule,
     UIRouterModule.forRoot({states: STATES}),
-    NgxsModule.forRoot([])
+    NgxsModule.forRoot([]),
+    NgxsReduxDevtoolsPluginModule.forRoot()
   ],
   //add services here
   providers: [],

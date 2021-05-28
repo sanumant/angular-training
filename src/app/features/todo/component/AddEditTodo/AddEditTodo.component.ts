@@ -34,10 +34,9 @@ export class AddEditTodoComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.todoForm.patchValue({
+      this.todoForm.patchValue({
       title: this.todo?.title,
-      desc: this.todo?.desc
-    });
+      desc: this.todo?.desc});
   }
 
   addOrUpdateItem() {

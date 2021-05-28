@@ -7,7 +7,7 @@ import { AddEditTodoComponent } from './component/AddEditTodo/AddEditTodo.compon
 import { TodoListService } from 'src/app/api/services/todo-list.service';
 import { NgxsModule } from '@ngxs/store';
 import { TodoListItemsState } from './state/todo.state';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, take } from 'rxjs/operators';
 
 export const STATES = [
     {name: 'list', url: '/list',  component: UIView, redirectTo: 'list.dashboard'},
@@ -16,7 +16,10 @@ export const STATES = [
     {name: 'list.edit', url: '/edit/{id:int}',  component: AddEditTodoComponent, resolve: [{
       token: "todo",
       deps: [Transition, TodoListService],
-      resolveFn: (trans: Transition, todoListService: TodoListService) => todoListService.getItem(trans.params().id)
+      resolveFn: (trans: Transition, todoListService: TodoListService) => todoListService.getItem(trans.params().id).pipe(take(1)).toPromise().then(item => {
+        debugger;
+        return item;
+      })
     }]}
 ];
 
