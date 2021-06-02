@@ -1,11 +1,12 @@
 import { TodoListService } from 'src/app/api/services/todo-list.service';
 import { Injectable } from '@angular/core';
-import { Action, State, StateContext } from '@ngxs/store';
+import { Action, createSelector, Selector, State, StateContext } from '@ngxs/store';
 import { TodoListItem } from 'src/app/api/services/TodoListItem';
 import { AddTodo, UpdateTodo, RemoveTodo } from './todo.actions';
 import { catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { patch, append, removeItem, insertItem, updateItem } from '@ngxs/store/operators';
+import { state } from '@angular/animations';
 
 export interface TodoItemsStateModel {
     todoItems: TodoListItem[];
@@ -21,17 +22,29 @@ export interface TodoItemsStateModel {
 export class TodoListItemsState {
     constructor(private todoListService: TodoListService){}
 
+    @Selector([TodoListItemsState])
+    static items(state: TodoItemsStateModel) {
+        return state.todoItems;
+    }
+
+    static item(id: number) {
+        return createSelector([TodoListItemsState.items], (items: TodoListItem[]) => {
+            return items.find(i => i.id === id);
+        })
+    }
+
     @Action(AddTodo)
-    addTodo(ctx: StateContext<TodoItemsStateModel>, {todoItem}: AddTodo) {
+    addTodo({getState, patchState}: StateContext<TodoItemsStateModel>, {todoItem}: AddTodo) {
     
         return this.todoListService.addItem(todoItem)
         .pipe(
-            tap(addedItem => 
-                ctx.setState(
-                    patch({
-                        todoItems: append([addedItem])
-                    })
-                )
+            tap(addedItem => {
+                const state = getState()
+                console.log("Addtodo action=>", addedItem);
+                patchState({
+                    todoItems: [...state.todoItems, addedItem]
+                })
+            }
             ));
     }
 

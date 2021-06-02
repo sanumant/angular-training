@@ -14,15 +14,16 @@ import { RemoveTodo } from '../../state/todo.actions';
 })
 export class TodoListComponent implements OnInit {
 
-  items$: Observable<TodoListItem[]>;
+  items$: Observable<TodoListItem[]> | undefined;
 
   constructor(
     private todoListService: TodoListService,
     private store: Store) {
-    this.items$ = todoListService.getItems();
+      
    }
 
   ngOnInit(): void {
+    this.items$ = this.store.select(state => state.items());
   }
 
   removeItem(id: number) {

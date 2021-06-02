@@ -13,7 +13,9 @@ export class TodoListService {
   constructor() {}
 
   getItems(): Observable<TodoListItem[]> {
-    return items;
+    return items.pipe(
+      tap(item => console.log("getItems  call ==> ", item))
+    );
   }
 
   addItem(item:TodoListItem): Observable<TodoListItem> {
@@ -30,7 +32,7 @@ export class TodoListService {
   }
 
   getItem(id: number): Observable<any> {
-    return items.pipe(tap(item => console.log(item)),
+    return items.pipe(tap(item => console.log("getItem call=>", item)),
       map(items => items.find(i => i.id === id))
     );
   }

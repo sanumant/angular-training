@@ -13,13 +13,11 @@ export const STATES = [
     {name: 'list', url: '/list',  component: UIView, redirectTo: 'list.dashboard'},
     {name: 'list.dashboard', url: '/dashboard',  component: TodoListComponent},
     {name: 'list.add', url: '/add',  component: AddEditTodoComponent},
+    //{name: 'list.edit', url: '/edit/{id:int}',  component: AddEditTodoComponent}
     {name: 'list.edit', url: '/edit/{id:int}',  component: AddEditTodoComponent, resolve: [{
-      token: "todo",
+      token: "todoId",
       deps: [Transition, TodoListService],
-      resolveFn: (trans: Transition, todoListService: TodoListService) => todoListService.getItem(trans.params().id).pipe(take(1)).toPromise().then(item => {
-        debugger;
-        return item;
-      })
+      resolveFn: (trans: Transition, todoListService: TodoListService) => trans.params().id
     }]}
 ];
 

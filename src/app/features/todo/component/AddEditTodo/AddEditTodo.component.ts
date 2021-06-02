@@ -6,7 +6,10 @@ import { TodoListService } from 'src/app/api/services/todo-list.service';
 import { TodoListItem } from 'src/app/api/services/TodoListItem';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { withLatestFrom } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { TodoListItemsState } from '../../state/todo.state';
+import { state } from '@angular/animations';
+import { isNgTemplate } from '@angular/compiler';
 
 @Component({
   selector: 'app-AddEditTodo',
@@ -19,6 +22,13 @@ export class AddEditTodoComponent implements OnInit {
   @Input()
   todo: TodoListItem | undefined;
 
+  todo$: Observable<TodoListItem> | undefined;
+
+  @Input()
+  todoId: number | undefined;
+
+ // @Select(TodoListItemsState.item(this.todoId)) todo$! : Observable<TodoListItem>;
+
   todoForm= this.fb.group({
     id: [''],
     title: ['', Validators.required],
@@ -29,14 +39,15 @@ export class AddEditTodoComponent implements OnInit {
     private fb: FormBuilder, 
     private todoListService: TodoListService, 
     private stateService: StateService,
-    private store: Store) {
-  
-   }
+    private store: Store) {}
 
   ngOnInit() {
-      this.todoForm.patchValue({
+    this.todo$ = this.store.select(state => state.item(this.todoId));
+    this.todo$.subscribe(i => console.log("this is the item we are looking for ==>", i));
+      /*this.todoFo
+      rm.patchValue({
       title: this.todo?.title,
-      desc: this.todo?.desc});
+      desc: this.todo?.desc});*/
   }
 
   addOrUpdateItem() {
