@@ -8,6 +8,7 @@ import { TodoListService } from 'src/app/api/services/todo-list.service';
 import { NgxsModule } from '@ngxs/store';
 import { TodoListItemsState } from './state/todo.state';
 import { filter, map, take } from 'rxjs/operators';
+import { TodoFormComponent } from './component/TodoForm/TodoForm.component';
 
 export const STATES = [
     {name: 'list', url: '/list',  component: UIView, redirectTo: 'list.dashboard'},
@@ -16,13 +17,13 @@ export const STATES = [
     //{name: 'list.edit', url: '/edit/{id:int}',  component: AddEditTodoComponent}
     {name: 'list.edit', url: '/edit/{id:int}',  component: AddEditTodoComponent, resolve: [{
       token: "todoId",
-      deps: [Transition, TodoListService],
-      resolveFn: (trans: Transition, todoListService: TodoListService) => trans.params().id
+      deps: [Transition],
+      resolveFn: (trans: Transition) => trans.params().id
     }]}
 ];
 
 @NgModule({
-  declarations: [TodoListComponent, AddEditTodoComponent],
+  declarations: [TodoListComponent, AddEditTodoComponent, TodoFormComponent],
   imports: [
     CommonModule,
     UIRouterModule.forChild({states: STATES}),

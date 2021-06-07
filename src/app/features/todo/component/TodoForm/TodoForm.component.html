@@ -1,0 +1,18 @@
+<form [formGroup]="todoForm" (submit)="addOrUpdateItem()">
+  <div>
+      <label>
+      Item title:
+      <input type="text" formControlName="title" required>
+  </label>
+  </div>
+
+  <div>
+  <label>
+      Item description:
+      <input type="text" formControlName="desc" required>
+  </label>
+  </div> 
+  <div>
+  <button type="submit" [disabled]="todoForm.invalid">Save</button>
+  </div>
+</form>

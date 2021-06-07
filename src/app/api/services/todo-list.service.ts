@@ -1,7 +1,7 @@
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { TodoListItem } from './TodoListItem';
 import { Injectable } from '@angular/core';
-import { filter, find, map, tap } from 'rxjs/operators';
+import { filter, find, map, take, tap } from 'rxjs/operators';
 
 const ITEMS: TodoListItem[] = [];
 const items: BehaviorSubject<TodoListItem[]> = new BehaviorSubject(ITEMS);
@@ -33,7 +33,7 @@ export class TodoListService {
 
   getItem(id: number): Observable<any> {
     return items.pipe(tap(item => console.log("getItem call=>", item)),
-      map(items => items.find(i => i.id === id))
+      map(items => items.find(i => i.id === id)), take(1)
     );
   }
 

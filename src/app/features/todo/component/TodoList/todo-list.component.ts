@@ -1,5 +1,6 @@
+import { TodoListItemsState } from './../../state/todo.state';
 import { Observable } from 'rxjs';
-import { Store } from '@ngxs/store';
+import { Store, Select } from '@ngxs/store';
 
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { TodoListService } from 'src/app/api/services/todo-list.service';
@@ -14,7 +15,7 @@ import { RemoveTodo } from '../../state/todo.actions';
 })
 export class TodoListComponent implements OnInit {
 
-  items$: Observable<TodoListItem[]> | undefined;
+  @Select(TodoListItemsState.items) items$! : Observable<TodoListItem[]>;
 
   constructor(
     private todoListService: TodoListService,
@@ -23,7 +24,6 @@ export class TodoListComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.items$ = this.store.select(state => state.items());
   }
 
   removeItem(id: number) {

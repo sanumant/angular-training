@@ -4,9 +4,7 @@ import { Action, createSelector, Selector, State, StateContext } from '@ngxs/sto
 import { TodoListItem } from 'src/app/api/services/TodoListItem';
 import { AddTodo, UpdateTodo, RemoveTodo } from './todo.actions';
 import { catchError, map, tap } from 'rxjs/operators';
-import { of } from 'rxjs';
 import { patch, append, removeItem, insertItem, updateItem } from '@ngxs/store/operators';
-import { state } from '@angular/animations';
 
 export interface TodoItemsStateModel {
     todoItems: TodoListItem[];
