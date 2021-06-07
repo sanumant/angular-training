@@ -1,4 +1,4 @@
-import { TodoListItemsState } from './../../state/todo.state';
+import { TodoListItemsState } from '../../../state/todo.state';
 import { ChangeDetectionStrategy, Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { TodoListItem } from 'src/app/api/services/TodoListItem';
 import { Store } from '@ngxs/store';

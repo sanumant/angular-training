@@ -3,11 +3,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Transition, UIRouterModule, UIView} from '@uirouter/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddEditTodoComponent } from './component/AddEditTodo/AddEditTodo.component';
-import { TodoListService } from 'src/app/api/services/todo-list.service';
+import { AddEditTodoComponent } from './component/container/AddEditTodo/AddEditTodo.component';
 import { NgxsModule } from '@ngxs/store';
 import { TodoListItemsState } from './state/todo.state';
-import { filter, map, take } from 'rxjs/operators';
 import { TodoFormComponent } from './component/TodoForm/TodoForm.component';
 
 export const STATES = [

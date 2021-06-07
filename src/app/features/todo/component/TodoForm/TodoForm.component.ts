@@ -2,8 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { StateService } from '@uirouter/core';
-import { TodoListItem } from 'src/app/api/services/TodoListItem';
-import { AddTodo, UpdateTodo} from '../../state/todo.actions';
+import { AddTodo, UpdateTodo } from '../../state/todo.actions';
 ;
 
 @Component({
